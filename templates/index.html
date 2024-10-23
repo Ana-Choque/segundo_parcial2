@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de productos</title>
+    <style>
+        /* Aplicamos Flexbox al body para centrar todo vertical y horizontalmente */
+        body {
+            display: flex;
+            flex-direction: column; /* Colocar elementos en columna */
+            justify-content: center; /* Centrar verticalmente */
+            align-items: center; /* Centrar horizontalmente */
+            height: 100vh; /* Ocupar toda la pantalla */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Cuadro para la información del encabezado */
+        .encabezado {
+            border: 2px solid black;
+            padding: 15px;
+            text-align: center;
+            width: 60%;
+            margin-bottom: 20px;
+            background-color: #f8f8f8;
+        }
+
+        /* Título centrado */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            
+        }
+
+        /* Párrafos centrados */
+        p {
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        /* Centrado y estilo de la tabla */
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center; /* Centrar contenido de las celdas */
+        }
+
+        /* Enlaces para Editar y Eliminar */
+        a {
+            text-decoration: none;
+            color: blue;
+            margin: 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilo para el botón de "Nuevo producto" */
+        .nuevo-producto {
+            margin-top: 20px;
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #d8d9d8;
+            color: rgb(8, 8, 8);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .nuevo-producto:hover {
+            background-color: #686767;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cuadro para el encabezado de la información del estudiante -->
+    <div class="encabezado">
+        <p><strong>SEGUNDO PARCIAL TEM-742</strong></p>
+        <p><strong>Nombre:</strong> Ana Carolina Choque Condori</p>
+        <p><strong>Carnet:</strong> 9919665</p>
+    </div>
+
+    <!-- Título de la página -->
+    <h1>Gestión de productos</h1>
+
+    <!-- Botón de nuevo producto -->
+    <a href="/agregar" class="nuevo-producto">Nuevo producto</a>
+
+    <!-- Tabla de productos -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Fecha de Vencimiento</th>
+                <th>Categoría</th>
+                <th>     </th>
+                <th>     </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            <tr>
+                <td>{{ loop.index }}</td> <!-- loop.index para numeración secuencial -->
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.cantidad }}</td>
+                <td>{{ producto.precio }}</td>
+                <td>{{ producto.fecha_vencimiento }}</td>
+                <td>{{ producto.categoria }}</td>
+                <td>
+                    <a href="/editar/{{ producto.id }}">Editar</a>
+                </td>
+                <td>
+                    <a href="/eliminar/{{ producto.id }}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
